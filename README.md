@@ -48,6 +48,6 @@ Update_info:
 
 在注册表中找到`HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Run`，
 新建字符串值，名称为`Auto_update_ip`，数据为可执行文件的绝对路径，如下图所示
-![img.png](img.png)
+![./.MD_images/img_1.png](img_1.png)
 
 这样就可以实现开机自动更新IP地址了。
