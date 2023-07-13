@@ -1,5 +1,5 @@
 # 定时更新本机IP地址到阿里云解析
-
+定期将阿里云域名解析到本机，本地实现DDNS。A repository that implements DDNS functionality, which can periodically update the local IP address to Alibaba Cloud domain name resolution service.
 ## 使用方法
 
 ### 自行构建

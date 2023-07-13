@@ -16,7 +16,8 @@ void update(){
 
 int main(int argc, char *argv[]) {
     init_argv(argv);
-    HWND hWnd = GetConsoleWindow();
+//    HWND hWnd = GetConsoleWindow(); // 为啥这个不行啊
+    HWND hWnd = GetForegroundWindow();
     CheckIP checkIP;
     if (checkIP.is_first_launch()){
         printf("First launch, created config.yaml, please edit it.\n");

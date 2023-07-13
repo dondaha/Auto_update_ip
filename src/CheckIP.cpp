@@ -39,6 +39,7 @@ void CheckIP::create_config() {
 void CheckIP::update_ip() {
     unsigned long stSize = sizeof(IP_ADAPTER_INFO);
     int card_num = 0;
+    bool found = false;
     auto pIpAdapterInfo = (PIP_ADAPTER_INFO)malloc(sizeof(IP_ADAPTER_INFO));
     auto nRel = GetAdaptersInfo(pIpAdapterInfo, &stSize);
     if (ERROR_BUFFER_OVERFLOW == nRel){
@@ -63,6 +64,7 @@ void CheckIP::update_ip() {
             printf("MAC: %s\n", mac);
             if (std::strcmp(mac, mac_config.c_str()) == 0) {
                 printf("Found the right network card\n");
+                found = true;
                 if (std::strcmp(ip, ip_config.c_str()) == 0) {
                     printf("IP address is the same as before, nothing to do\n");
                 }else{
@@ -78,8 +80,6 @@ void CheckIP::update_ip() {
                     system((get_ali_update_path()+std::string(" --ip ")+std::string(ip)).c_str());
                     printf("update success\n");
                 }
-                free(pIpAdapterInfo); // 释放内存
-                return;
             }
             pIpAdapterInfo = pIpAdapterInfo->Next;
             ++card_num;
@@ -88,6 +88,7 @@ void CheckIP::update_ip() {
     if (pIpAdapterInfo) {
         free(pIpAdapterInfo);
     }
+    if (!found)
     printf("Can't find the right network card, please check your mac address in config.yaml\n");
 }
 
